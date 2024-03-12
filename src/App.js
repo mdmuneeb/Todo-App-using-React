@@ -4,7 +4,8 @@ import { useState } from 'react';
 
 function App() {
 
-  let [todo, saveTodo] = useState([])
+  let [todo, saveTodo] = useState([]);
+  let [done, saveToDone] = useState(false);
 
   let saveTodoList =  (event) => 
   {
@@ -32,6 +33,8 @@ function App() {
       
     }
 
+
+
   let removeItem = (task) =>{
     var newList = todo.filter((res) => {
       return res !== task;
@@ -48,13 +51,22 @@ function App() {
           value: val,
           index:i 
         }
-        return <TodoListItems value = {obj} remove = {removeItem}/>
+        return <TodoListItems value = {obj} remove = {removeItem} doneOrNot={saveToDone} currentState={done} key={i}/>
       }
     )
   } 
 
   viewList();
 
+
+
+
+
+
+
+
+
+  
 
   return (
     <div className="App">
@@ -79,10 +91,10 @@ function App() {
 export default App;
 
 
-function TodoListItems({value, remove})
+function TodoListItems({value, remove, doneOrNot, currentState})
 {
   
   return (
-    <li>{value.value} <span onClick={() => remove(value.value)}>X</span></li>
+    <li onClick={() => doneOrNot(!currentState)} className={currentState ? 'DoneChecked' : ''} >{value.value} <span onClick={() => remove(value.value)}>X</span></li>
   )
 }

@@ -83,3 +83,10 @@ form button
   cursor: pointer;
   position: absolute;
 }
+
+.DoneChecked
+{
+  text-decoration: line-through;
+  background-color: yellow !important;
+  color: red !important;
+}
